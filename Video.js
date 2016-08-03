@@ -2,12 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {StyleSheet, requireNativeComponent, NativeModules, View} from 'react-native';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 import VideoResizeMode from './VideoResizeMode.js';
-
-const {
-  Component,
-  PropTypes,
-} = React;
-
+ 
 const {
   StyleSheet,
   requireNativeComponent,
