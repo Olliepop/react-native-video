@@ -1,5 +1,6 @@
-import React from 'react';
-import ReactNative from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {StyleSheet, requireNativeComponent, NativeModules, View} from 'react-native';
+import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 import VideoResizeMode from './VideoResizeMode.js';
 
 const {
@@ -127,10 +128,9 @@ export default class Video extends Component {
   };
 
   render() {
-    const {
-      source,
-      resizeMode,
-    } = this.props;
+
+    const resizeMode = this.props.resizeMode;
+    const source = resolveAssetSource(this.props.source) || {};
 
     let uri = source.uri;
     if (uri && uri.match(/^\//)) {
@@ -193,7 +193,14 @@ Video.propTypes = {
   fullscreen: PropTypes.bool,
 
   /* Wrapper component */
-  source: PropTypes.object,
+  source: PropTypes.oneOfType([
+   PropTypes.shape({
+     uri: PropTypes.string
+   }),
+   // Opaque type returned by require('./video.mp4')
+   PropTypes.number
+ ]),
+  
   resizeMode: PropTypes.string,
   repeat: PropTypes.bool,
   paused: PropTypes.bool,
@@ -220,11 +227,11 @@ Video.propTypes = {
   onPlaybackRateChange: PropTypes.func,
 
   /* Required by react-native */
-  scaleX: React.PropTypes.number,
-  scaleY: React.PropTypes.number,
-  translateX: React.PropTypes.number,
-  translateY: React.PropTypes.number,
-  rotation: React.PropTypes.number,
+  scaleX: PropTypes.number,
+  scaleY: PropTypes.number,
+  translateX: PropTypes.number,
+  translateY: PropTypes.number,
+  rotation: PropTypes.number,
   ...View.propTypes,
 };
 
