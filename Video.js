@@ -1,15 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import {StyleSheet, requireNativeComponent, NativeModules, View} from 'react-native';
+import { StyleSheet, requireNativeComponent, NativeModules, View } from 'react-native';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 import VideoResizeMode from './VideoResizeMode.js';
  
-const {
-  StyleSheet,
-  requireNativeComponent,
-  NativeModules,
-  View,
-} = ReactNative;
-
 const styles = StyleSheet.create({
   base: {
     overflow: 'hidden',
